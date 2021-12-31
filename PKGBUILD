@@ -76,22 +76,26 @@ options=('!strip')
 #_lucjanpath="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/${_major}"
 _lucjanpath="https://gitlab.com/sirlucjan/kernel-patches/raw/master/${_major}"
 
-source=("https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/${_srcname}.tar.xz"
+source=(
+        "https://mirrors.ustc.edu.cn/kernel.org/linux/kernel/v5.x/${_srcname}.tar.xz"
         "https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/${_srcname}.tar.sign"
-        "https://github.com/damentz/${_lqxpatchname}/archive/${_major}-${_lqxpatchrel}.tar.gz")
+        "https://github.com/damentz/${_lqxpatchname}/archive/${_major}-${_lqxpatchrel}.tar.gz"
+        "https://github.com/Sasasu/kernel/commit/6b86a6591bc824add99969523a464a887480de72.patch"
+        )
 validpgpkeys=(
     'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
     '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
 )
-sha512sums=('89f0a7ca69d20a539d4b612a7028a30a5e98b402e4b6b88516f14237e5da4b626d7929eab8b40fccc90766e8f3bae87e9858a19077ffad20d8204acf18794f5b'
+sha512sums=('SKIP'
             'SKIP'
-            '0d52841e5a302995c247f17c16cde71cffd41bf006a5b4599ad0e6faeda4036647e21180f427e2a4af4f6fa35f1c21b04aaf478b4ce948d2947e98b13f6b41b2')
-
-
+            'SKIP'
+            'SKIP'
+            )
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
+echo "CFLAGS = $CFLAGS"
 
 prepare() {
     cd $_srcname
